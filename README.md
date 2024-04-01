@@ -1,4 +1,4 @@
-#Django_project_management_app
+# Django_project_management_app
 
 ## Description
 Django Teams is a project management application where user can manage projects and tasks
