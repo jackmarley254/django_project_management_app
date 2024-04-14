@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Project(models.Model):
+# Define the fields for the project
     name = models.CharField(max_length=200,null=False,blank=False)
     description = models.TextField(null=False,blank=False)
     date_created = models.DateTimeField(auto_now_add=True)
@@ -19,6 +20,7 @@ class Task(models.Model):
     TODO="TO DO"
     COMPLETED='COMPLETED'
     INPROGRESS='IN-PROGRESS'
+# choices to show task project	
     STATUS_CHOICES = [
         (TODO, 'TO DO'),
         (COMPLETED, 'COMPLETED'),

@@ -14,13 +14,16 @@ from django.contrib.auth.mixins import LoginRequiredMixin
                
 @login_required
 def projectList(request):
+# Retrieve all projects
    projects = Project.objects.all()
    print(projects)
   
+# Prepare context data to pass to template
    context = {'projects':projects}
    return render(request, 'projects/projects.html',context)
 @login_required
 def projectDetail(request,pk):
+#Retrieve project by primary key (pk)
    project = get_object_or_404(Project, id=pk)
    project_tasks = project.task_set.all()
    
@@ -29,10 +32,13 @@ def projectDetail(request,pk):
 
 @login_required
 def taskList(request):
+#Retrieve tasks assigned to the current user
   user_tasks =Task.objects.filter(assignee=request.user)
+#Retrieve tasks not assigned to any user
   tasks = Task.objects.filter(assignee=None)
  
   context = {'tasks':tasks,'user_tasks':user_tasks}
+#Render the tasks template with context data
   return render(request, 'projects/tasks.html',context)
 
 
@@ -44,6 +50,7 @@ def taskDetail(request,pk):
 
 @login_required
 def taskCreate(request):
+# Create a new task form instance
    form = TaskForm
    if request.method == "POST":
        form =TaskForm(request.POST)
